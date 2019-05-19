@@ -1,9 +1,9 @@
-printUI();
-
 // Adding event Listener to Button
 document.getElementById("taskBtn").addEventListener("click", getTask);
 // Creating Publick Array
 let allObjTask = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+
+printUI();
 
 //// Get Value from HTML
 function getTask(){
