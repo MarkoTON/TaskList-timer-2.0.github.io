@@ -1,3 +1,5 @@
+printUI();
+
 // Adding event Listener to Button
 document.getElementById("taskBtn").addEventListener("click", getTask);
 // Creating Publick Array
