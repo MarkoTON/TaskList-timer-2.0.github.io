@@ -25,7 +25,8 @@ function getTask(){
   // Object for task
   let objTask = {
     task: getTask,
-    time: getTimeStamp
+    time: getTimeStamp,
+    classState: "list-group-item mb-1"
   };
   
   allObjTask.push(objTask);
@@ -45,15 +46,9 @@ function printUI(){
   
   allObjTask.forEach(element => {
     let li = document.createElement("li");
-    // let a = document.createElement("a");
-    // let delBtn = document.createElement("i");
     let text = document.createTextNode(element.task);
-    li.setAttribute("class","list-group-item");
-    // a.setAttribute("class", "delete-item d-inline");
-    // delBtn.setAttribute("class", "fas fa-times float-right mt-1");
-    // a.appendChild(delBtn);
+    li.setAttribute("class", element.classState );
     li.appendChild(text);
-    // li.appendChild(a);
     ul.appendChild(li);
   });
 }
@@ -113,45 +108,29 @@ function removeTask(timestamp){
   const data = JSON.parse(localStorage.getItem('items'));
   for(let i = 0; i < data.length; i++){
     if(data[i].time === expiredTimestamp){
-      data.splice(i,(1));
+      data[i].classState = "alert alert-danger list-group pl-3 mb-1";
     }
   }
   // Returning array to original array
   allObjTask = data;
+
+  // Sorting task by class attribute
+  allObjTask.sort(compare);
   // Set LS
   localStorage.setItem('items', JSON.stringify(allObjTask));
   // Print new UI
   printUI();
 }
 
-// var ulTaskList = document.querySelector("#taskList").addEventListener("click", removeTask);
-// // Remove Task
-// function removeTask(e) {
-//   // console.log(e);
-//   // if(e.parentElements === undefined) return;
-//   if(e.target.parentElement.classList.contains('delete-item')) {
-    
-//     if(confirm('Are You Sure?')) {
-//       e.target.parentElement.parentElement.remove();
-      
-//       // Remove from LS
-//       removeTaskFromLocalStorage(e.target.parentElement.parentElement);
-//     }
-//   }
-// }
-
-// function removeTaskFromLocalStorage(elementDel){
-//   // console.log(elementDel.textContent);
-//   allObjTask.forEach((element,index) => {
-//     // console.log(element.task)
-//     if(elementDel.textContent === element.task){
-//       allObjTask.splice(index, 1);
-//     }
-//   });
-  
-//   localStorage.setItem('items', JSON.stringify(allObjTask));
-//   checkTime();
-// }
+function compare( a, b ) {
+  if ( a.classState.length < b.classState.length ){
+    return -1;
+  }
+  if ( a.classState.length > b.classState.length ){
+    return 1;
+  }
+  return 0;
+}
 
 // Seting Interval for checking timestamp
 let timeInterval = setInterval(() => {
@@ -174,3 +153,13 @@ document.getElementById("clearTask").addEventListener('click', function() {
   }
   allObjTask = [];
 });
+
+// // Clear all Expired task from Array and UI
+// document.getElementById("clearExpiredTask").addEventListener('click', function() {
+//   let ul = document.querySelector("ul");
+//   if(ul.firstChild.classList.value === "alert alert-danger list-group pl-3 mb-1") {
+//     ul.removeChild(ul.firstChild);
+//   }
+//   // localStorage.clear();
+//   // allObjTask = [];
+// });

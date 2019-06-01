@@ -7,6 +7,7 @@
   <title>Time</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -33,8 +34,9 @@
           </div>
           <br>
         </div>
-        <div class="card-footer">
-          <button id="clearTask" class="btn btn-danger">Clear All Task</button>
+        <div class="card-footer d-inline-flex">
+          <button id="clearTask" class="btn btn-warning mr-auto">Clear All Task</button>
+          <!-- <button id="clearExpiredTask" class="btn btn-danger ml-auto">Clear All Expired Task</button> -->
         </div>
       </div>
       
@@ -45,6 +47,12 @@
       </div>
     </div><!-- col-md-8 -->
   </div><!-- container -->
+
+  <div class="backToCV">
+    <a href="https://markoton.github.io/MarkoTON-Resume.github.io/" target="_blank">
+      <img src="img/resume.png" alt="Resume" class="rounded-square">
+    </a>
+  </div>
   
   <script src="app.js"></script>
 </body>
