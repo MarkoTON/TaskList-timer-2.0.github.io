@@ -97,7 +97,7 @@ function timeConverter(timeObj){
   }
 };
 
-//// Reoving Task from array and UI
+//// Removing Task from array and UI
 
 function removeTask(timestamp){
   // Restart UI
